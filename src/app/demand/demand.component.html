@@ -1,0 +1,45 @@
+<div class="container-md mt-5">
+  <div class="row mx-auto">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-5 comp-div">
+      <h3 class="comp-header">Talep oluşturma ekrani</h3>
+      <form [formGroup]="demandAddForm" (ngSubmit)="add()" class="form-group ">
+        <div class="mt-4">
+          <input type="text" id="name" name="name" formControlName="name" class="form-control comp-form-control"
+            placeholder="Adiniz">
+           <div class="alert alert-warning" 
+            *ngIf="demandAddForm.get('name').hasError('required') && demandAddForm.get('name').dirty">Adinizi girmeniz
+            zorunludur</div>
+        </div> 
+
+        <div class="mt-4">
+          <input type="text" id="surname" name="surname" formControlName="surname"
+            class="form-control comp-form-control" placeholder="Soyadiniz">
+          <div class="alert alert-warning"
+            *ngIf="demandAddForm.get('surname').hasError('required') && demandAddForm.get('surname').dirty">Soyadinizi
+            girmeniz zorunludur</div>
+        </div>
+
+        <div class="mt-4">
+          <input type="file" id="document" name="document" (change)="onFileSelected($event)" #fileUpload formControlName="document"
+            class="form-control comp-form-control-file" placeholder="Document">
+          <div class="alert alert-warning"
+            *ngIf="demandAddForm.get('document').hasError('required') && demandAddForm.get('document').dirty">Aciklama
+            dosyasi zorunludur</div>
+        </div>
+
+        <div class="mt-4">
+        <!--  <textarea id="description" name="description" rows="6" (ngModelChange)="textAreaChange($event)" formControlName="description"
+            class="form-control comp-form-control-textarea" placeholder="Aciklama metni"></textarea> -->
+
+            <input type="text" id="description" name="description" formControlName="description"
+            class="form-control comp-form-control" placeholder="Aciklama metni">
+        </div>
+
+        <button type="submit" class="btn btn-warning mt-3" [disabled]="demandAddForm.invalid">Talep olustur</button>
+
+      </form>
+    </div>
+    <div class="col-md-4">
+    </div>

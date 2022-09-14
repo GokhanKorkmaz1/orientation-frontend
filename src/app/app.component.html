@@ -1,0 +1,53 @@
+<app-nav></app-nav>
+<div class="container-fluid">
+    <div class="row" style="height: 45.6rem;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-warning col-md-2" style="--bs-bg-opacity: .85;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                  <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                  <span class="fs-4">Sidebar</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                  <li class="nav-item">
+                    <a routerLink="login" routerLinkActive="Active" class="nav-link text-white" aria-current="page">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                      Login
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="demand" class="nav-link text-white">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                      Create Demand
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                      Orders
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+                      Products
+                    </a>
+                  </li>
+                  
+                </ul>
+                <hr>
+                <ul style="list-style-type: none;">
+                    <li class="nav-item">
+                    <a routerLink="user" class="nav-link list text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                        Profile
+                      </a>
+                    </li>
+                </ul>
+                  
+        </div>
+        <div class="col-md-10 back-image">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
