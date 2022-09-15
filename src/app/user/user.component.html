@@ -1,12 +1,22 @@
 <main role="main" class="container">
+  <div class="row" style="height: 8rem;"></div>
   <div class="row">
-    <div class="col-md-6 mt-3 pt-3">
-      <h2>{{user.name}} {{user.surname}}</h2>
-      <p >{{user.id}} </p>
-      <p>{{user.password}}</p> 
-      <p>{{user.email}} </p>
-      <p>{{user.phoneNumber}}</p>
-      <p>{{userId}}</p>
-    </div>
+      <div class="col-md-2">
+
+      </div>
+      
+      <div class="col-md-4 list-group">
+        <p class="list-group-item ">Isim: {{user.name}} </p>
+        <p class="list-group-item">Email: {{user.email}} </p>
+      </div>
+      <div class="col-md-4 list-group" style="position:relative;">
+        <p class="list-group-item">Soyisim: {{user.surname}} </p>
+        <p class="list-group-item">Telefon Numarası: {{user.phoneNumber}}</p>
+        <button class="btn btn-secondary my-2 my-sm-0" style="width:50%; position:absolute; bottom: -40px; right:11px;" (click)="logout()" type="submit">Cikis</button>
+      </div>
+
+      <div class="col-md-2">
+        
+      </div>  
   </div>
 </main>

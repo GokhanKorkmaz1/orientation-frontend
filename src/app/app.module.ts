@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+//import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,19 +14,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemandComponent } from './demand/demand.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
+import { UserDemandListComponent } from './user-demand-list/user-demand-list.component';
+import { DemandDetailComponent } from './demand-detail/demand-detail.component';
 
 @NgModule({
-  declarations: [					
+  declarations: [							
     AppComponent,
       NavComponent,
       UserComponent,
       LoginComponent,
       DemandComponent,
-      RegisterComponent
+      RegisterComponent,
+      UserDemandListComponent,
+      DemandDetailComponent
    ],
   imports: [
-    CommonModule,
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
@@ -34,9 +38,9 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  schemas: [
-    NO_ERRORS_SCHEMA
-  ]
+  bootstrap: [AppComponent]
+  // schemas: [
+  //   NO_ERRORS_SCHEMA
+  // ]
 })
 export class AppModule { }

@@ -9,58 +9,49 @@ import { RegisterUser } from '../models/register-user';
 })
 export class LoginService {
 
-constructor(private httpClient:HttpClient, private router:Router) { }
-path = "http://localhost:5096/api/v1/";
+  constructor(private httpClient: HttpClient, private router: Router) { }
+  path = "http://localhost:5096/api/v1/";
 
-USER_ID='userId';
-USER_ROLE='userRole'
-ROLES_GUEST_ROLE="Guest";
-ROLES_ADMIN_ROLE="Admin";
-ROLES_USER_ROLE="User";
+  USER_ID = 'userId';
+  USER_ROLE = 'userRole'
+  ROLES_GUEST_ROLE = "Guest";
+  ROLES_ADMIN_ROLE = "Admin";
+  ROLES_USER_ROLE = "User";
 
-userRole = this.ROLES_GUEST_ROLE;
-userId:any = 0;
+  userRole = this.ROLES_GUEST_ROLE;
+  userId: any = 0;
 
-login(loginUser:LoginUser){
-let headers = new HttpHeaders();
-headers = headers.append("Content-Type", "application/json");
+  login(loginUser: LoginUser) {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
 
-this.httpClient.post(this.path + "Login", loginUser, {headers:headers}).subscribe(data=>{
-  this.saveUserInfos( data['id'] , data['isAdmin']);
-  this.userId = data['id'];
-  this.userRole = data['isAdmin'];
-  this.router.navigateByUrl('user/'+ this.userId);
-});
-}
-
-/*register(registerUser:RegisterUser){
-  let headers = new HttpHeaders();
-headers = headers.append("Content-Type", "application/json");
-this.httpClient.post(this.path+ "Users", registerUser, {headers:headers}).subscribe(data=>{
-    // todo data...
-});
-}*/
-
-saveUserInfos(userId:any, role:any){
-  localStorage.setItem(this.USER_ID, userId);
-  if(!role){
-    this.userRole= this.ROLES_ADMIN_ROLE
+    this.httpClient.post(this.path + "Login", loginUser, { headers: headers }).subscribe(data => {
+      this.saveUserInfos(data['id'], data['isAdmin']);
+      this.userId = data['id'];
+      this.userRole = data['isAdmin'];
+      this.router.navigateByUrl('user/' + this.userId);
+    });
   }
-  else{
-    this.userRole= this.ROLES_USER_ROLE
+
+  saveUserInfos(userId: any, role: any) {
+    localStorage.setItem(this.USER_ID, userId);
+    if (!role) {
+      this.userRole = this.ROLES_ADMIN_ROLE
+    }
+    else {
+      this.userRole = this.ROLES_USER_ROLE
+    }
+    localStorage.setItem(this.USER_ROLE, this.userRole);
   }
-  localStorage.setItem(this.USER_ROLE, this.userRole);
-}
 
-logOut(){
-  localStorage.removeItem(this.USER_ID);
-  localStorage.removeItem(this.USER_ROLE);
-  this.userId=0;
-  this.userRole = this.ROLES_GUEST_ROLE
-}
+  logOut() {
+    localStorage.removeItem(this.USER_ID);
+    localStorage.removeItem(this.USER_ROLE);
+    this.userId = 0;
+    this.userRole = this.ROLES_GUEST_ROLE
+  }
 
-loggedIn(){
-  return this.userId; 
-}
-re
+  loggedIn() {
+    return this.userId;
+  }
 }

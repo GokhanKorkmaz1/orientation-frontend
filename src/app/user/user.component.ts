@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { tick } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
+import { NavComponent } from '../nav/nav.component';
+import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -12,21 +14,31 @@ import { UserService } from '../services/user.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private userService:UserService, private activatedRoute:ActivatedRoute) { }
+  constructor(private userService:UserService,
+     private activatedRoute:ActivatedRoute,
+     private loginService:LoginService,
+     private router:Router) { }
 userId:number=0;  
 user:User;
   ngOnInit() {
     this.activatedRoute.params.subscribe(params =>{
-      this.getUserById(params["id"]);
+      this.userId=params["id"];
+      this.getUserById(this.userId);
     });
   }
 
   getUserById(id){
     this.userService.getUser(id).subscribe(data =>{
       this.user = data;
-      this.userId = data.id
-      console.log(data);
+      this.userId = data.id;
+      //this.nav.userId = this.userId;
+      //console.log(data);
     });
+  }
+
+  logout(){
+    this.loginService.logOut();
+    this.router.navigate(['login']);
   }
   
 }

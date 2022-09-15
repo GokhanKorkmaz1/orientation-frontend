@@ -11,12 +11,11 @@ import { DemandService } from '../services/demand.service';
 export class DemandComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
-    private http:HttpClient,
     private demandService:DemandService) { }
 
   demandAddForm:FormGroup;
   demand:any={};
-  fileUpload:any;
+  //fileUpload:any;
   formData:FormData = new FormData();
 
   createDemandAddForm(){
@@ -33,19 +32,16 @@ export class DemandComponent implements OnInit {
   }
 
   onFileSelected(event) {
-
     const file:File = event.target.files[0];
 
     if (file) {
-
-        this.fileUpload = file.name;
         this.formData.append("document", file);
     }
 }
 
   add(){
     if(this.demandAddForm.valid){
-      this.demand = Object.assign("",this.demandAddForm.value);
+      this.demand = Object.assign({},this.demandAddForm.value);
       this.formData.append("name",this.demand.name);
       this.formData.append("surname",this.demand.surname);
       if(this.demand.description){
@@ -57,6 +53,7 @@ export class DemandComponent implements OnInit {
       
       this.demandService.addDemand(this.formData).subscribe(data =>{
         console.log(data);
+        alert(data.id + " numaralı talep gönderildi!")
       });
 
     }

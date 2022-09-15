@@ -1,0 +1,14 @@
+.userIdentifier{
+    background: #cea495;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 1rem;
+    text-align: center;
+    opacity: .8;
+    color: white;
+}
+
+.userDetail{
+    background: #cea495;
+    border-radius: 1rem;
+}
