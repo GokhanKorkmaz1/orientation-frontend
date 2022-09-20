@@ -31,13 +31,13 @@ user:User;
     this.userService.getUser(id).subscribe(data =>{
       this.user = data;
       this.userId = data.id;
-      //this.nav.userId = this.userId;
-      //console.log(data);
     });
   }
 
   logout(){
-    this.loginService.logOut();
+    this.loginService.logOut().subscribe(data =>{
+      this.userId = data.userId;
+    });
     this.router.navigate(['login']);
   }
   

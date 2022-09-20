@@ -1,0 +1,24 @@
+<table class="table table-striped mt-3" style="border: 1px solid black;">
+  <thead>
+    <tr class="text-center">
+      <th>Talep No</th>
+      <th>Kullanıcı No</th>
+      <th>Isim</th>
+      <th>Soyisim</th>
+      <th>Durum</th>
+      <th>Detay</th>
+  </thead>
+  <tbody>
+          <tr *ngFor="let demand of demands" class="text-center">    
+              <td >{{demand.id}}</td>
+              <td>{{demand.userId}}</td>
+              <td>{{demand.name}}</td>
+              <td>{{demand.surname}}</td>
+              <ng-template #notEvaluate>
+                <td>&#10006;</td>
+              </ng-template>
+              <td *ngIf="demand.isEvaluate === true; else notEvaluate">&#10003;</td>
+              <button class="btn btn-secondary my-2 my-sm-0 demand-button" (click)="showDemandById(demand.id)">Detayı Gör</button>
+          </tr>
+  </tbody>
+</table>

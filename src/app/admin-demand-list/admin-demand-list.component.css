@@ -1,0 +1,12 @@
+.demand-button{
+    width: 100%; 
+    color:black; 
+    border-radius: 0; 
+    border: 1px solid black;
+    position: relative;
+    
+}
+
+.text-center{
+    text-align: center;
+}

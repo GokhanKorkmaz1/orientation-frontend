@@ -1,17 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="--bs-bg-opacity: .9;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Orientation</a>
+    <a class="navbar-brand" routerLink="home">Orientation</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
+
+    <ng-template #admin>
+      
+      <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="'user/'+userId">Admin</a>
+            </li>
+          </ul>
+  
+  
+        <form *ngIf="isAuthenticated === 0; else logOutTemp" #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
+          <input class="form-control me-sm-2" name="email" [(ngModel)]="loginUser.email" required type="text"
+            placeholder="Email adresi">
+          <input class="form-control me-sm-2" name="password" [(ngModel)]="loginUser.password" required type="password"
+            placeholder="Sifreniz">
+          <button class="btn btn-secondary my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Giris</button>
+        </form>
+        <ng-template #logOutTemp>
+          <button class="btn btn-secondary my-2 my-sm-0 " style="margin-right:10px;" (click)="redirectToAdminDemandList()" type="submit"> Kullanici Taleplerini Göster</button>
+          <button class="btn btn-secondary my-2 my-sm-0 " (click)="logout()" type="submit">Cikis</button>
+        </ng-template>
+      </div>
+    </ng-template>
+
+    <div *ngIf="userRole !== 'Admin'; else admin"  class="collapse navbar-collapse" id="navbarColor01">
       <ng-template #showUser>
         <ul class="navbar-nav me-auto">
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="user/{{userId}}" routerLinkActive="Active">User
+          <li class="nav-item">
+            <a class="nav-link" routerLink="user/{{userId}}" routerLinkActive="Active">Kullanici
             </a>
-          </li> -->
+          </li>
 
           <li class="nav-item">
             <a class="nav-link" routerLink="demand">Talep Yarat</a>
@@ -21,9 +46,6 @@
 
       <ng-template #showLogin>
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="login">Giris Yap</a>
-          </li>
 
           <li class="nav-item">
             <a class="nav-link" routerLink="register">Kayit Ol</a>
@@ -31,7 +53,7 @@
         </ul>
       </ng-template>
 
-      <ng-template *ngIf="isAuthenticated !== 0; then showUser else showLogin"></ng-template>
+      <ng-template *ngIf="isAuthenticated === 0; then showLogin else showUser"></ng-template>
 
       <form *ngIf="isAuthenticated === 0; else logOutTemp" #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
         <input class="form-control me-sm-2" name="email" [(ngModel)]="loginUser.email" required type="text"

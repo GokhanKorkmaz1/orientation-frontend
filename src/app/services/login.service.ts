@@ -1,8 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthUser } from '../models/auth-user';
 import { LoginUser } from '../models/login-user';
 import { RegisterUser } from '../models/register-user';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +24,11 @@ export class LoginService {
   userRole = this.ROLES_GUEST_ROLE;
   userId: any = 0;
 
-  login(loginUser: LoginUser) {
+  login(loginUser: LoginUser):Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
 
-    this.httpClient.post(this.path + "Login", loginUser, { headers: headers }).subscribe(data => {
-      this.saveUserInfos(data['id'], data['isAdmin']);
-      this.userId = data['id'];
-      this.userRole = data['isAdmin'];
-      this.router.navigateByUrl('user/' + this.userId);
-    });
+    return this.httpClient.post<User>(this.path + "Login", loginUser, { headers: headers });
   }
 
   saveUserInfos(userId: any, role: any) {
@@ -44,11 +42,13 @@ export class LoginService {
     localStorage.setItem(this.USER_ROLE, this.userRole);
   }
 
-  logOut() {
+  logOut():Observable<AuthUser> {
     localStorage.removeItem(this.USER_ID);
     localStorage.removeItem(this.USER_ROLE);
     this.userId = 0;
     this.userRole = this.ROLES_GUEST_ROLE
+
+    return this.httpClient.get<AuthUser>(this.path + "Login/logout");
   }
 
   loggedIn() {

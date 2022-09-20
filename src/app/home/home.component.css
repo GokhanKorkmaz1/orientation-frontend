@@ -1,0 +1,21 @@
+.myDiv{
+    width: 35rem;
+    height: 15rem;
+    text-align: center;
+    border: 2px solid #000000;
+    box-shadow: 4px 4px #000025;
+    
+}
+
+.myHeader{
+    text-decoration: solid;
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-shadow: 2px 2px #000000;
+    font-size: 4rem;
+    opacity: 0.9;
+}
+
+.topRow{
+    height: 10rem;
+}
+
