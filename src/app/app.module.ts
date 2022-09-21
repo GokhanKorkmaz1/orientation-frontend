@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -17,9 +17,13 @@ import { UserDemandListComponent } from './user-demand-list/user-demand-list.com
 import { DemandDetailComponent } from './demand-detail/demand-detail.component';
 import { AdminDemandListComponent } from './admin-demand-list/admin-demand-list.component';
 import { HomeComponent } from './home/home.component';
-let id:number =0;
+import { AdminDecisionListComponent } from './admin-decision-list/admin-decision-list.component';
+import { registerLocaleData } from '@angular/common';
+import localeTr from '@angular/common/locales/tr';
+registerLocaleData(localeTr);
+
 @NgModule({
-  declarations: [									
+  declarations: [										
     AppComponent,
       NavComponent,
       UserComponent,
@@ -28,7 +32,8 @@ let id:number =0;
       UserDemandListComponent,
       DemandDetailComponent,
       AdminDemandListComponent,
-      HomeComponent
+      HomeComponent,
+      AdminDecisionListComponent
    ],
   imports: [
     BrowserModule,
@@ -40,7 +45,7 @@ let id:number =0;
     ReactiveFormsModule
   ],
   providers: [
-    {provide: 'userId',useValue:id}
+    { provide: LOCALE_ID, useValue: "tr-TR" }
   ],
   bootstrap: [AppComponent]
   // schemas: [

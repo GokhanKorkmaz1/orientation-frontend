@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
-import { NavComponent } from '../nav/nav.component';
 import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
 
@@ -32,13 +30,6 @@ user:User;
       this.user = data;
       this.userId = data.id;
     });
-  }
-
-  logout(){
-    this.loginService.logOut().subscribe(data =>{
-      this.userId = data.userId;
-    });
-    this.router.navigate(['login']);
   }
   
 }

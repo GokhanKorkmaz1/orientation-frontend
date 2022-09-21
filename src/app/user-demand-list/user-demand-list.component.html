@@ -1,53 +1,55 @@
-<table class="table table-striped mt-3" style="border: 1px solid black;">
-  <thead>
-    <tr class="text-center">
-      <th>Talep No</th>
-      <th>Isim</th>
-      <th>Soyisim</th>
-      <th >Durum</th>
-      <th>Detay</th>
-  </thead>
-  <tbody>
-          <tr *ngFor="let demand of demands" class="text-center">    
-              <td >{{demand.id}}</td>
-              <td>{{demand.name}}</td>
-              <td>{{demand.surname}}</td>
-              
-              <ng-template #notEvaluate>
-                <td>&#10006;</td>
-              </ng-template>
-
-              <td *ngIf="demand.isEvaluate === true; else notEvaluate">&#10003;</td>
-              <button class="btn btn-secondary my-2 my-sm-0 demand-button" (click)="showDemandById(demand.id)">Detayı Gör</button>
-          </tr>
-  </tbody>
-</table>
-
-<br>
-
-<table class="table table-striped mt-3" style="border: 1px solid black;">
-  <thead>
-    <tr class="text-center">
-      <th>Karar No</th>
-      <th>Talep No</th>
-      <th>Karar</th>
-      <th>Karar Tarihi</th>
-      <th >Aciklama</th>
-      
-  </thead>
-  <tbody>
-          <tr *ngFor="let decision of decisions" class="text-center">    
-              <td >{{decision.id}}</td>
-              <td>{{decision.demandId}}</td>
-              
-              <ng-template #notEvaluate>
-                <td>&#10006;</td>
-              </ng-template>
-              
-              <td *ngIf="decision.isApproved === true; else notEvaluate">&#10003;</td>
-              <td>{{decision.decisionTime | date:'short'}}</td>
-              <td >{{decision.description}}</td>
-              
-          </tr>
-  </tbody>
-</table>
+<div style="padding:3rem">
+  <table class="table table-striped mt-3" style="border: 1px solid black;">
+    <thead>
+      <tr class="text-center">
+        <th>Talep No</th>
+        <th>Isim</th>
+        <th>Soyisim</th>
+        <th >Durum</th>
+        <th>Detay</th>
+    </thead>
+    <tbody>
+            <tr *ngFor="let demand of demands" class="text-center">    
+                <td >{{demand.id}}</td>
+                <td>{{demand.name}}</td>
+                <td>{{demand.surname}}</td>
+                
+                <ng-template #notEvaluate>
+                  <td>&#10006;</td>
+                </ng-template>
+  
+                <td *ngIf="demand.isEvaluate === true; else notEvaluate">&#10003;</td>
+                <button class="btn btn-secondary my-2 my-sm-0 demand-button" (click)="showDemandById(demand.id)">Detayı Gör</button>
+            </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <table class="table table-striped mt-3" style="border: 1px solid black;">
+    <thead>
+      <tr class="text-center">
+        <th>Karar No</th>
+        <th>Talep No</th>
+        <th>Karar</th>
+        <th>Karar Tarihi</th>
+        <th >Aciklama</th>
+        
+    </thead>
+    <tbody>
+            <tr *ngFor="let decision of decisions" class="text-center">    
+                <td >{{decision.id}}</td>
+                <td>{{decision.demandId}}</td>
+                
+                <ng-template #notEvaluate>
+                  <td>&#10006;</td>
+                </ng-template>
+                
+                <td *ngIf="decision.isApproved === true; else notEvaluate">&#10003;</td>
+                <td>{{decision.decisionTime | date:'medium'}}</td>
+                <td >{{decision.description}}</td>
+                
+            </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertifyService } from '../services/alertify.service';
 import { DemandService } from '../services/demand.service';
 
 @Component({
@@ -11,11 +13,12 @@ import { DemandService } from '../services/demand.service';
 export class DemandComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
+    private router:Router,
+    private alertifyService:AlertifyService,
     private demandService:DemandService) { }
 
   demandAddForm:FormGroup;
   demand:any={};
-  //fileUpload:any;
   formData:FormData = new FormData();
 
   createDemandAddForm(){
@@ -53,7 +56,10 @@ export class DemandComponent implements OnInit {
       
       this.demandService.addDemand(this.formData).subscribe(data =>{
         console.log(data);
-        alert(data.id + " numaralı talep gönderildi!")
+        this.alertifyService.success(data.id + " numaralı talep gönderildi!");
+        this.formData = null;
+        this.demand = {};
+        this.router.navigate(['user-demand-list']);
       });
 
     }

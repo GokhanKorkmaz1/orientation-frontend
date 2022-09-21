@@ -35,6 +35,10 @@ export class DemandService {
     return this.httpClient.post<Decision>(this.path + "Admins/decision", decisionDto);
    }
 
+   getDecisions():Observable<Decision[]>{
+    return this.httpClient.get<Decision[]>(this.path + "Admins/decisions");
+   }
+
    getDecisionByUserId(userId:number):Observable<Decision[]>{
     return this.httpClient.get<Decision[]>(this.path + "Admins/" + userId + "/decisions" );
    }

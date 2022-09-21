@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from '../models/login-user';
+import { AlertifyService } from '../services/alertify.service';
 import { LoginService } from '../services/login.service';
 
 
@@ -11,7 +12,9 @@ import { LoginService } from '../services/login.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private loginService:LoginService, private router:Router) { }
+  constructor(private loginService:LoginService,
+    private alertifyService:AlertifyService,
+    private router:Router) { }
 
   loginUser:any={}
   user:LoginUser;
@@ -32,7 +35,7 @@ export class NavComponent implements OnInit {
       this.userRole = this.loginService.userRole;
       this.router.navigateByUrl('user/' + this.userId);
     }, err=>{
-      alert(err.error);
+      this.alertifyService.error(err.error);
       this.logoutForError();
     }); 
   }
@@ -66,6 +69,10 @@ export class NavComponent implements OnInit {
 
   redirectToAdminDemandList(){
     this.router.navigate(['admin-demand-list']);
+  }
+
+  redirectToAllDecisions(){
+    this.router.navigate(['admin-decision-list']);
   }
 
 }

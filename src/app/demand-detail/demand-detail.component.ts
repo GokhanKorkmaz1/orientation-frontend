@@ -6,6 +6,7 @@ import { LoginService } from '../services/login.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DecisionDto } from '../models/decisionDto';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-demand-detail',
@@ -18,6 +19,7 @@ export class DemandDetailComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private sanitizer:DomSanitizer,
     private formBuilder:FormBuilder,
+    private alertifyService:AlertifyService,
     private router:Router,
     private loginService:LoginService) { }
   demand:Demand;
@@ -95,10 +97,10 @@ export class DemandDetailComponent implements OnInit {
       console.log(data);
     });
     if(this.decisionButton == this.YES){
-      alert("Talep basariyla onaylandi!")
+      this.alertifyService.success("Talep basariyla onaylandi!");
     }
     else{
-      alert("Talep basariyla reddedildi!")  
+      this.alertifyService.success("Talep basariyla reddedildi!");
     }
     this.redirectToAdminDemandList();
   }

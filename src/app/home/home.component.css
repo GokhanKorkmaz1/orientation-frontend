@@ -1,7 +1,12 @@
 .myDiv{
-    width: 35rem;
-    height: 15rem;
+    
+    height: 20rem;
+    width: 50%;
+    margin-top: 5rem;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px solid #000000;
     box-shadow: 4px 4px #000025;
     

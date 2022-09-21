@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~alertifyjs/build/css/alertify.min.css";
+@import "~alertifyjs/build/css/themes/bootstrap.min.css";
+
+.back-image{
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYvKceW5IH0mXP9rZPc9Vs-JcWAkCBFnK9_A&usqp=CAU');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }

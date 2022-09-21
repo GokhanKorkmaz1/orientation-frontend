@@ -24,6 +24,7 @@
           <button class="btn btn-secondary my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Giris</button>
         </form>
         <ng-template #logOutTemp>
+          <button class="btn btn-secondary my-2 my-sm-0 " style="margin-right:10px;" (click)="redirectToAllDecisions()" type="submit"> Tüm Kararlari Göster</button>
           <button class="btn btn-secondary my-2 my-sm-0 " style="margin-right:10px;" (click)="redirectToAdminDemandList()" type="submit"> Kullanici Taleplerini Göster</button>
           <button class="btn btn-secondary my-2 my-sm-0 " (click)="logout()" type="submit">Cikis</button>
         </ng-template>
