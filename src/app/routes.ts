@@ -9,6 +9,7 @@ import { HomeComponent } from "./home/home.component";
 import { AdminDecisionListComponent } from "./admin-decision-list/admin-decision-list.component";
 
 export const appRoutes:Routes = [
+    
     {path:"home", component: HomeComponent},
     {path:"user/:id", component: UserComponent},
     {path:"demand", component: DemandComponent},
@@ -18,4 +19,5 @@ export const appRoutes:Routes = [
     {path:"demand-detail/:id", component: DemandDetailComponent},
     {path:"register", component: RegisterComponent},
     {path:"**", redirectTo:"home", pathMatch:"full"}
+    
 ];

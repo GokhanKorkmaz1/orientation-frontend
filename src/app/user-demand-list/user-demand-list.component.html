@@ -15,10 +15,10 @@
                 <td>{{demand.surname}}</td>
                 
                 <ng-template #notEvaluate>
-                  <td>&#10006;</td>
+                  <td>Degerlendirilmedi</td>
                 </ng-template>
   
-                <td *ngIf="demand.isEvaluate === true; else notEvaluate">&#10003;</td>
+                <td *ngIf="demand.isEvaluate === true; else notEvaluate">Degerlendirildi</td>
                 <button class="btn btn-secondary my-2 my-sm-0 demand-button" (click)="showDemandById(demand.id)">Detayı Gör</button>
             </tr>
     </tbody>

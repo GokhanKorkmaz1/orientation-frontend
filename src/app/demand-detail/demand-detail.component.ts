@@ -32,6 +32,17 @@ export class DemandDetailComponent implements OnInit {
   decisionButton:string='';
   form:any={};
   decisionDto:DecisionDto;
+  pdfFile:File;
+  base64Format='data:';
+
+  signatures = {
+    JVBERi0: "application/pdf",
+    R0lGODdh: "image/gif",
+    R0lGODlh: "image/gif",
+    iVBORw0KGgo: "image/png",
+    "/9j/": "image/jpg"
+  };
+
   ngOnInit() {
     this.createDecisionForm();
     this.activatedRoute.params.subscribe(params =>{
@@ -44,19 +55,32 @@ export class DemandDetailComponent implements OnInit {
   setDemand(){
     this.demandService.getDemandById(this.demandId).subscribe(data=>{
       this.demand = data;
+      let MimeType = this.detectMimeType(this.demand.document);
+      this.base64Format += MimeType + ";base64,"
+      this.base64Format += this.demand.document;
       
-      // this.blob= new Blob([data.document as BlobPart]);
-      // this.file = new File([this.blob],"doc", {type:"application/pdf"});
-      // console.log(this.file);
     });
   }
 
-  getFile(){
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.webServerPath+ this.demand.document);
+  detectMimeType(b64) {
+    for (let signature in this.signatures) {
+      if (b64.indexOf(signature) === 0) {
+        return this.signatures[signature];
+      }
+    }
   }
 
+  getFile(){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.base64Format);
+  }
+
+
   openNewPage(){
-    window.open(this.webServerPath + this.demand.document);
+    let iframe="<iframe width='100%' height='100%' src='" + this.base64Format + "'> </iframe>"
+    let x = window.open();
+    x.document.open();
+    x.document.write(iframe);
+    x.document.close();
   }
 
   decision(event){

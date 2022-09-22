@@ -48,8 +48,5 @@ registerLocaleData(localeTr);
     { provide: LOCALE_ID, useValue: "tr-TR" }
   ],
   bootstrap: [AppComponent]
-  // schemas: [
-  //   NO_ERRORS_SCHEMA
-  // ]
 })
 export class AppModule { }
